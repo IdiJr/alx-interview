@@ -37,7 +37,12 @@ try:
 
             # Print statistics after every 10 lines
             if lines_processed == 10:
-                print_stats(total_size, status_codes)
+                print('File size: {:d}'.format(total_size))
+                sorted_keys = sorted(status_codes.keys())
+                for key in sorted_keys:
+                    value = status_codes[key]
+                    if value != 0:
+                        print('{}: {}'.format(key, value))
                 lines_processed = 0
 
 except (ValueError, IndexError):
@@ -46,4 +51,11 @@ except (ValueError, IndexError):
 
 except KeyboardInterrupt:
     # Handle keyboard interruption (CTRL + C)
-    print_stats(total_size, status_codes)
+    pass
+finally:
+    print('File size: {:d}'.format(total_size))
+    sorted_keys = sorted(status_codes.keys())
+    for key in sorted_keys:
+        value = status_codes[key]
+        if value != 0:
+            print('{}: {}'.format(key, value))
