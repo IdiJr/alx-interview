@@ -25,7 +25,7 @@ try:
     for line in sys.stdin:
         parts = line.split()
 
-        if len(parts) >= 9:
+        if len(parts) > 2:
             status_code = parts[-2]
             file_size = int(parts[-1])
 
