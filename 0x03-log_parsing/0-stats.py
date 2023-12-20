@@ -17,7 +17,7 @@ status_codes = {'200': 0,
 
 try:
     for line in sys.stdin:
-        parts = line.split()
+        parts = line.split(' ')
 
         if len(parts) > 2:
             status_code = parts[-2]
