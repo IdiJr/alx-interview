@@ -4,12 +4,6 @@
 import sys
 
 
-def print_stats(total_size, status_codes):
-    print("File size: {}".format(total_size))
-    for code in sorted(status_codes):
-        print("{}: {}".format(code, status_codes[code]))
-
-
 lines_processed = 0
 total_size = 0
 status_codes = {'200': 0,
