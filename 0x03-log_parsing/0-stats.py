@@ -4,6 +4,12 @@
 import sys
 
 
+def print_stats(total_size, status_codes):
+    print("File size: {}".format(total_size))
+    for code in sorted(status_codes):
+        print("{}: {}".format(code, status_codes[code]))
+
+
 lines_processed = 0
 total_size = 0
 status_codes = {'200': 0,
@@ -17,9 +23,9 @@ status_codes = {'200': 0,
 
 try:
     for line in sys.stdin:
-        parts = line.split(' ')
+        parts = line.split()
 
-        if len(parts) > 2:
+        if len(parts) >= 9:
             status_code = parts[-2]
             file_size = int(parts[-1])
 
@@ -31,20 +37,13 @@ try:
 
             # Print statistics after every 10 lines
             if lines_processed == 10:
-                print('File size: {:d}'.format(total_size))
-                sorted_keys = sorted(status_codes.keys())
-                for key in sorted_keys:
-                    value = status_codes[key]
-                    if value != 0:
-                        print('{}: {}'.format(key, value))
+                print_stats(total_size, status_codes)
                 lines_processed = 0
 
-except Exception:
+except (ValueError, IndexError):
+    # Skip lines that do not match the specified format
     pass
-finally:
-    print('File size: {:d}'.format(total_size))
-    sorted_keys = sorted(status_codes.keys())
-    for key in sorted_keys:
-        value = status_codes[key]
-        if value != 0:
-            print('{}: {}'.format(key, value))
+
+except KeyboardInterrupt:
+    # Handle keyboard interruption (CTRL + C)
+    print_stats(total_size, status_codes)
