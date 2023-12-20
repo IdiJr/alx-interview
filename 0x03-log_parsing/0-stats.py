@@ -39,12 +39,7 @@ try:
                         print('{}: {}'.format(key, value))
                 lines_processed = 0
 
-except (ValueError, IndexError):
-    # Skip lines that do not match the specified format
-    pass
-
-except KeyboardInterrupt:
-    # Handle keyboard interruption (CTRL + C)
+except Exception:
     pass
 finally:
     print('File size: {:d}'.format(total_size))
