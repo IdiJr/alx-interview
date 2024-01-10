@@ -6,7 +6,7 @@ The N queens puzzle is the challenge of placing N non-attacking queens on an N×
 In this task, we're expected to a program that provides every possible solution to the N queens problem. One solution per line, the solutions should not be printed in any order and only `sys` module can be imported.
 
 ## Tasks
-0. N queens
+* 0. N queens
 Usage: `nqueens N`
 If the user called the program with the wrong number of arguments, print `Usage:` `nqueens N`, followed by a new line, and exit with the status `1`
 where N must be an integer greater or equal to `4`
