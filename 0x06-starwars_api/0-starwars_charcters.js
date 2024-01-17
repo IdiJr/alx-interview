@@ -2,34 +2,40 @@
 
 const request = require('request');
 
-const filmNum = process.argv[2] + '/';
-const filmURL = 'https://swapi-api.hbtn.io/api/films/';
-
-// Make an API request to get film information
-request(filmURL + filmNum, async function (err, res, body) {
-  if (err) {
-    console.error('Error fetching film information:', err);
-    return;
+if (process.argv.length !== 3) {
+    console.error('Usage: ./0-starwars_characters.js <Movie ID>');
+    process.exit(1);
   }
 
-  // Parse the response body to get the list of character URLs
-  const charURLList = JSON.parse(body).characters;
 
-  // Iterate through the character URLs and fetch character information
+const movieId = process.argv[2] + '/';
+const apiURL = 'https://swapi-api.hbtn.io/api/films/';
+
+// Makes an API request to get film information
+request(apiURL, (error, response, body) => {
+    if (error) {
+      console.error('Error:', error);
+    } else if (response.statusCode !== 200) {
+      console.error('HTTP Error:', response.statusCode);
+    } else {
+      // Parse the response body to get the list of character URLs
+        const filmData = JSON.parse(body);
+      const characters = filmData.characters;
+
+  // Iterare through the character URLs and fect character information
   // Make a request to each character URL
-  for (const charURL of charURLList) {
-    await new Promise(function (resolve, reject) {
-      request(charURL, function (err, res, body) {
-        if (err) {
-          console.error('Error fetching character information:', err);
-          reject(err);
-          return;
-        }
-
-        // Parse the character information and print the character's name
-        console.log(JSON.parse(body).name);
-        resolve();
-      });
-    });
-  }
+  characters.forEach((characterUrl) => {
+    request(characterUrl, (charError, charResponse, charBody) => {
+      if (charError) {
+        console.error('Error fetching character:', charError);
+      } else if (charResponse.statusCode !== 200) {
+        console.error('HTTP Error:', charResponse.statusCode);
+      } else {
+        // Parse the charcter nformation and print the character's name Resolve the promise to indicate completion
+        const charData = JSON.parse(charBody);
+        console.log(charData.name);
+    }
+  });
+});
+}
 });
