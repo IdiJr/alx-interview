@@ -14,10 +14,8 @@ request(apiUrl + movieId, (error, response, body) => {
   if (error) {
     console.error('Error fetching film information:', error);
   } else if (response.statusCode !== 200) {
-    console.error('HTTP Error:', response.statusCode);
+    console.error('HTTP Error fetching film information. Status Code:', response.statusCode);
   } else {
-    // Print the entire response body for debugging
-    console.log('API Response Body:', body);
 
     // Parse the response body to get the list of character URLs
     const filmData = JSON.parse(body);
@@ -31,7 +29,7 @@ request(apiUrl + movieId, (error, response, body) => {
           if (charError) {
             console.error('Error fetching character information:', charError);
           } else if (charResponse.statusCode !== 200) {
-            console.error('HTTP Error:', charResponse.statusCode);
+            console.error('HTTP Error fetching character information. Status Code:', charResponse.statusCode);
           } else {
             // Parse the character information and print the character's name
             console.log(JSON.parse(charBody).name);
