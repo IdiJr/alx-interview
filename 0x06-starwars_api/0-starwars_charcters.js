@@ -33,6 +33,8 @@ request(apiUrl + movieId, (error, response, body) => {
           } else {
             // Parse the character information and print the character's name
             console.log(JSON.parse(charBody).name);
+            // You might resolve the promise here if you're using promises
+            // resolve();
           }
         });
       });
