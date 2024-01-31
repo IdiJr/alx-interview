@@ -8,3 +8,4 @@ This project contains a task that requires us to create an Algorithm that deteer
 * The value of a coin will always be an integer greater than 0
 * You can assume you have an infinite number of each denomination of coin in the list
 * Your solution’s runtime will be evaluated in this task
+![](./coin-change.gif)
