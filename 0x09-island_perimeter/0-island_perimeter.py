@@ -4,6 +4,7 @@ This script defines a function that calculates the perimeter of an island
 described by a grid.
 """
 
+
 def island_perimeter(grid):
     """
     Calculate the perimeter of an island described in the grid.
@@ -19,7 +20,7 @@ def island_perimeter(grid):
 
     for row in range(grid_length):
         for column in range(len(grid[row])):
-            # Check if the current cell is part of the island (has a value of 1)
+            # Check if the current cell is part of the island
             if grid[row][column] == 1:
                 # Check left neighbor
                 if row - 1 < 0 or grid[row - 1][column] == 0:
