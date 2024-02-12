@@ -1,0 +1,3 @@
+# 0x0A. PrimeGame
+This project is about a common interview question that involves two players taking turns to select a prime number from a given range. The goal is to select numbers in such a way that the sum of the selected numbers is maximized. The players alternate turns, and each player must select a prime number that has not been chosen before. The game continues until all the prime numbers have been exhausted. The player with the highest sum of selected numbers at the end of the game is declared the winner. This project will majorly test your problem solving skills.
+![](https://cdn.educba.com/academy/wp-content/uploads/2019/12/prime-numbers-in-python.jpg.webp)
