@@ -21,12 +21,15 @@ def get_primes(n):
 
 def isWinner(x, nums):
     """Prime game winner determination"""
+    if x< 1 or not nums:
+        return None
+    
     maria_wins = 0
     ben_wins = 0
     for x in nums:
         primes = get_primes(x)
         # Count the number of prime numbers in the set
-        prime_count = len(primes)
+        prime_count = sum(primes[2:x+1])
         # If the count is even, Ben wins, otherwise Maria wins
         if prime_count % 2 == 0:
             ben_wins += 1
